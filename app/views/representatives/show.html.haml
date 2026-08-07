@@ -1,4 +1,68 @@
-.container-fluid.bg-light
-  .row.text-center
-    .col-12
-      %h1.text-center= @representative&.name
+.container-fluid.bg-light.py-4
+  .container
+    .row
+      .col-md-4.text-center
+        - if @representative.photo_url.present?
+          %img.img-fluid.rounded{ src: @representative.photo_url, alt: @representative.name }
+
+      .col-md-8
+        %h1= @representative.name
+
+        %p
+          %strong Title:
+          = @representative.title
+
+        - if @representative.party.present?
+          %p
+            %strong Party:
+            = @representative.party
+
+        - if @representative.birthday.present?
+          %p
+            %strong Birthday:
+            = @representative.birthday
+
+        - if @representative.gender.present?
+          %p
+            %strong Gender:
+            = @representative.gender
+
+        - if @representative.address.present?
+          %p
+            %strong Address:
+            = @representative.address
+
+        - if @representative.phone.present?
+          %p
+            %strong Phone:
+            = @representative.phone
+
+        - if @representative.website.present?
+          %p
+            %strong Website:
+            = link_to @representative.website, @representative.website
+
+        - if @representative.contact_form.present?
+          %p
+            %strong Contact Form:
+            = link_to 'Contact Representative', @representative.contact_form
+
+        - if @representative.twitter.present?
+          %p
+            %strong Twitter:
+            = @representative.twitter
+
+        - if @representative.facebook.present?
+          %p
+            %strong Facebook:
+            = @representative.facebook
+
+        - if @representative.youtube.present?
+          %p
+            %strong YouTube:
+            = @representative.youtube
+
+        - if @representative.ocdid.present?
+          %p
+            %strong OCD ID:
+            = @representative.ocdid

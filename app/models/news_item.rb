@@ -6,7 +6,6 @@
 #
 #  id                :integer          not null, primary key
 #  description       :text
-#  issue             :string
 #  link              :string           not null
 #  title             :string           not null
 #  created_at        :datetime         not null
