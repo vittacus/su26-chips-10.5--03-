@@ -1,5 +1,5 @@
 databases:
-  - name: actionmap-db-xx
+  - name: actionmap-db-03
     databaseName: actionmap
     user: actionmap
     plan: free
@@ -7,7 +7,7 @@ databases:
 
 services:
   - type: web
-    name: actionmap-xx
+    name: actionmap-03
     runtime: ruby
     plan: free
     region: oregon
