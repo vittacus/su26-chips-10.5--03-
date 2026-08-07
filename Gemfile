@@ -137,6 +137,7 @@ group :development do
 
   # Add model annotations above files
   gem "annotaterb"
+  gem 'webmock'
 end
 
 group :production, :staging do
