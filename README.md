@@ -19,7 +19,7 @@ Heroku Deployment:
 Team Members:
 Andrew Vitt,
 Emily Xie,
-Yirina Wang,
+Yirina Wang
 
 ---
 
