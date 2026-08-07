@@ -51,7 +51,10 @@ RSpec.describe Representative do
                               'last_name' => 'Doe'
                             },
                             'type' => 'representative',
-                            'govtrack_id' => '12345'
+                            'references' => {
+                              'govtrack_id' => '12345',
+                              'bioguide_id' => 'D000001'
+                            }
                           }
                         ]
                       }
