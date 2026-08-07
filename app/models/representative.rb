@@ -66,13 +66,14 @@ class Representative < ApplicationRecord
   end
 
   def self.find_rep(official, title: '', ocdid: '')
-    Representative.create(
-      {
-        name: official['name'],
-        ocdid: ocdid,
-        title: title
-      }.merge(geocodio_details(official))
-    )
+    rep = Representative.find_or_initialize_by(ocdid: ocdid)
+
+    rep.name = official['name']
+    rep.title = title
+    rep.assign_attributes(geocodio_details(official))
+    rep.save!
+
+    rep
   end
 
   def self.geocodio_details(official)
