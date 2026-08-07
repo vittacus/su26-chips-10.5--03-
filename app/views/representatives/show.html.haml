@@ -12,10 +12,57 @@
           %strong Title:
           = @representative.title
 
-        %p
-          %strong Party:
-          = @representative.party
+        - if @representative.party.present?
+          %p
+            %strong Party:
+            = @representative.party
 
-        %p
-          %strong OCD ID:
-          = @representative.ocdid
+        - if @representative.birthday.present?
+          %p
+            %strong Birthday:
+            = @representative.birthday
+
+        - if @representative.gender.present?
+          %p
+            %strong Gender:
+            = @representative.gender
+
+        - if @representative.address.present?
+          %p
+            %strong Address:
+            = @representative.address
+
+        - if @representative.phone.present?
+          %p
+            %strong Phone:
+            = @representative.phone
+
+        - if @representative.website.present?
+          %p
+            %strong Website:
+            = link_to @representative.website, @representative.website
+
+        - if @representative.contact_form.present?
+          %p
+            %strong Contact Form:
+            = link_to 'Contact Representative', @representative.contact_form
+
+        - if @representative.twitter.present?
+          %p
+            %strong Twitter:
+            = @representative.twitter
+
+        - if @representative.facebook.present?
+          %p
+            %strong Facebook:
+            = @representative.facebook
+
+        - if @representative.youtube.present?
+          %p
+            %strong YouTube:
+            = @representative.youtube
+
+        - if @representative.ocdid.present?
+          %p
+            %strong OCD ID:
+            = @representative.ocdid
