@@ -1,4 +1,21 @@
-.container-fluid.bg-light
-  .row.text-center
-    .col-12
-      %h1.text-center= @representative&.name
+.container-fluid.bg-light.py-4
+  .container
+    .row
+      .col-md-4.text-center
+        - if @representative.photo_url.present?
+          %img.img-fluid.rounded{ src: @representative.photo_url, alt: @representative.name }
+
+      .col-md-8
+        %h1= @representative.name
+
+        %p
+          %strong Title:
+          = @representative.title
+
+        %p
+          %strong Party:
+          = @representative.party
+
+        %p
+          %strong OCD ID:
+          = @representative.ocdid
