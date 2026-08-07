@@ -133,5 +133,61 @@ RSpec.describe Representative do
                                                   phone: nil, photo_url: nil)
       end
     end
+
+    context 'when the representative already exists' do
+      let(:legislators) do
+        [
+          {
+            'type' => 'representative',
+            'bio' => {
+              'first_name' => 'Jane',
+              'last_name' => 'Doe'
+            },
+            'contact' => {},
+            'social' => {},
+            'references' => {
+              'govtrack_id' => '12345',
+              'bioguide_id' => 'D000001'
+            }
+          }
+        ]
+      end
+
+      before do
+        described_class.create!(
+          name: 'Jane Doe',
+          ocdid: '12345',
+          title: 'representative'
+        )
+      end
+
+      it 'does not create a duplicate representative' do
+        expect { representative }.not_to change(described_class, :count)
+      end
+    end
+
+    context 'when the representative does not exist' do
+      let(:legislators) do
+        [
+          {
+            'type' => 'representative',
+            'bio' => {
+              'first_name' => 'Jane',
+              'last_name' => 'Doe'
+            },
+            'contact' => {},
+            'social' => {},
+            'references' => {
+              'govtrack_id' => '12345',
+              'bioguide_id' => 'D000001'
+            }
+          }
+        ]
+      end
+
+      it 'creates a new representative' do
+        expect { representative }.to change(described_class, :count).by(1)
+      end
+    end
   end
 end
