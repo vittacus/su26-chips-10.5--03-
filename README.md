@@ -14,9 +14,12 @@
 
 <!-- Fill in at least the following info, but add more as is useful. -->
 
-Team Name / Number:
+Team Name / Number: 03
 Heroku Deployment:
 Team Members:
+Andrew Vitt
+Emily Xie
+Yirina Wang
 
 ---
 
