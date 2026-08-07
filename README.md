@@ -17,9 +17,9 @@
 Team Name / Number: 03
 Heroku Deployment:
 Team Members:
-Andrew Vitt
-Emily Xie
-Yirina Wang
+Andrew Vitt,
+Emily Xie,
+Yirina Wang,
 
 ---
 
