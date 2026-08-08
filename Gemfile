@@ -80,6 +80,8 @@ group :development, :test do
   # Testing utilities
   gem 'cucumber-rails', '>= 3.0.0', require: false
   gem 'capybara', '>= 3.26'
+  gem 'webmock'
+  gem 'database_cleaner'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
@@ -137,7 +139,6 @@ group :development do
 
   # Add model annotations above files
   gem "annotaterb"
-  gem 'webmock'
 end
 
 group :production, :staging do
