@@ -52,27 +52,21 @@ class Representative < ApplicationRecord
       official['name'] =
         "#{official.dig('bio', 'first_name')} #{official.dig('bio', 'last_name')}"
 
-      title = official['type']
       ocdid = official.dig('references', 'govtrack_id')
 
       reps << Representative.find_rep(
         official,
-        ocdid: ocdid,
-        title: title
+        ocdid: ocdid
       )
     end
 
     reps
   end
 
-  def self.find_rep(official, title: '', ocdid: '')
+  def self.find_rep(official, ocdid: '')
     rep = Representative.find_or_initialize_by(ocdid: ocdid)
-
     rep.name = official['name']
-    rep.title = title
-    rep.assign_attributes(geocodio_details(official))
-    rep.save!
-
+    rep.update_from_geocodio(official)
     rep
   end
 

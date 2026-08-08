@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe ApplicationHelper do
   describe '#auth_provider_path' do
     it 'maps google to the google_oauth2 auth path' do
       expect(helper.auth_provider_path('google')).to eq('/auth/google_oauth2')
