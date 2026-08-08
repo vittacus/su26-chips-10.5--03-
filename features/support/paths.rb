@@ -21,6 +21,10 @@ module NavigationHelpers
     when /^the state page for "(\w\w)"$/
       "/state/#{$1}"
 
+    when /^the search results page for "(.*)"$/
+      "/search/#{ERB::Util.url_encode($1)}"
+
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
