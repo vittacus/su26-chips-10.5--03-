@@ -28,10 +28,12 @@
                   %label.form-check-label{ for: 'actionmap-events-filter-county-radio' } County
           .form-group.row
             .col-12
+              %label.form-label{ for: 'actionmap-events-filter-state' } State
               = select_tag :state, options_for_select(ApplicationHelper.state_symbols_by_name),
                            { prompt: 'Select a state', class: 'form-control', id: 'actionmap-events-filter-state' }
           .form-group.row
             .col-12
+              %label.form-label{ for: 'actionmap-events-filter-county' } County
               = select_tag :county, options_for_select([]),
                            { prompt: 'Select a county', class: 'form-control', id: 'actionmap-events-filter-county' }
           = submit_tag 'Filter by State', name: nil, class: 'btn btn-primary my-2',
