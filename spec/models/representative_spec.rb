@@ -24,13 +24,6 @@
 #  bioguide_id  :string
 #
 
-# This file is a stub.
-# You should add your own test cases.
-# We recommend creating a file for each model in the database.
-
-# RSpec.describe Representative do
-# end
-
 require 'rails_helper'
 
 RSpec.describe Representative do
@@ -189,5 +182,22 @@ RSpec.describe Representative do
         expect { representative }.to change(described_class, :count).by(1)
       end
     end
+  end
+
+  describe '#update_from_geocodio' do
+    # rubocop:disable RSpec/ExampleLength
+    it 'updates an existing representative with fresh geocodio details' do
+      rep = described_class.create!(name: 'Old Name', ocdid: 'ocd-1', title: 'representative')
+      official = {
+        'type' => 'senator',
+        'references' => { 'govtrack_id' => 'ocd-1', 'bioguide_id' => 'D000002' },
+        'bio' => {}, 'contact' => {}, 'social' => {}
+      }
+
+      rep.update_from_geocodio(official)
+
+      expect(rep.reload.bioguide_id).to eq('D000002')
+    end
+    # rubocop:enable RSpec/ExampleLength
   end
 end

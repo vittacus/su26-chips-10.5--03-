@@ -96,6 +96,12 @@ RSpec.configure do |config|
   # FactoryBot Config.
   config.include FactoryBot::Syntax::Methods
 
+  # Use an allowed host (see config.hosts in config/application.rb) for request specs,
+  # since Rails' HostAuthorization middleware rejects RSpec's default test host.
+  config.before(:each, type: :request) do
+    host! '127.0.0.1'
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [Rails.root.join('spec/fixtures')]
 
