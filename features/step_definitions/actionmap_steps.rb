@@ -44,12 +44,11 @@ end
 Then /I should see (\d+) (?:states|counties)/i do |count|
   # How many counties should the map render
   # You might use this as a check that the right number of elements are rendered.
-
-end 
+end
 
 Given /^the following representatives exist for "([^"]*)":$/ do |_location, table|
   legislators = table.hashes.map do |row|
-    first, *rest = row['name'].split(' ')
+    first, *rest = row['name'].split
     {
       'type' => row['title'],
       'bio' => { 'first_name' => first, 'last_name' => rest.join(' '), 'party' => 'Democrat' },
