@@ -1,5 +1,22 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: events
+#
+#  id          :integer          not null, primary key
+#  description :text
+#  end_time    :datetime
+#  name        :string           not null
+#  start_time  :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  county_id   :integer          not null
+#
+# Indexes
+#
+#  index_events_on_county_id  (county_id)
+#
 require 'rails_helper'
 
 RSpec.describe Event do
