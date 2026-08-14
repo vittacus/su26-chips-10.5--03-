@@ -1,0 +1,60 @@
+.row
+  .col-12.col-md-8.offset-md-2.col-xl-6.offset-xl-3
+    %h1.text-center.mb-4 Edit News Item
+
+    %p
+      %strong Representative:
+      = link_to @selected_representative.name,
+                representative_path(@selected_representative)
+
+    %p
+      %strong Issue:
+      = @issue
+
+    %p.mt-4
+      %strong Select an article:
+
+    - if @articles.empty?
+      .alert.alert-warning
+        No articles were found for this issue.
+    - else
+      = form_with url: representative_save_my_news_item_path(@selected_representative),
+                  method: :post do
+        = hidden_field_tag :issue, @issue
+
+        - @articles.each_with_index do |article, index|
+          .mb-4
+            .d-flex.align-items-start
+              .mr-2.mt-1
+                = radio_button_tag :article_index, index, index.zero?
+
+              .flex-grow-1
+                %p.mb-1
+                  %strong Title:
+                  = article['title']
+
+                %p.mb-1
+                  %strong Link:
+                  = link_to article['url'],
+                            article['url'],
+                            target: '_blank',
+                            rel: 'noopener'
+
+                %p.mb-1
+                  %strong Description:
+                  = article['description']
+
+            = hidden_field_tag "articles[#{index}][title]", article['title']
+            = hidden_field_tag "articles[#{index}][url]", article['url']
+            = hidden_field_tag "articles[#{index}][description]", article['description']
+
+          - unless index == @articles.length - 1
+            %hr
+
+        .mt-4
+          = submit_tag 'Save', class: 'btn btn-primary'
+
+        .mt-3
+          = link_to representative_news_items_path(@selected_representative),
+                    class: 'btn btn-info' do
+            View News Articles
