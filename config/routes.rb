@@ -34,6 +34,12 @@ Rails.application.routes.draw do
   get '/representatives/:representative_id/my_news_item/new' => 'my_news_items#new',
       :as                                                     => :representative_new_my_news_item
   post '/representatives/:representative_id/my_news_item/new', to: 'my_news_items#create'
+  get '/representatives/:representative_id/my_news_item/search',
+     to: 'my_news_items#search',
+     as: :representative_search_my_news_item
+  post '/representatives/:representative_id/my_news_item/save',
+     to: 'my_news_items#save_article',
+     as: :representative_save_my_news_item
   get '/representatives/:representative_id/my_news_item/:id' => 'my_news_items#edit',
       :as                                                    => :representative_edit_my_news_item
   match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#update',

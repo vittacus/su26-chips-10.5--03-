@@ -1,16 +1,32 @@
 .row
   .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-    %h1.text-center New news article
+    %h1.text-center Search for a News Article
 
   .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-    = render 'form', news_item:            @news_item,
-                     form_url:             representative_new_my_news_item_path(@representative),
-                     form_method:          :post,
-                     representatives_list: @representatives_list,
-                     disabled_for_user:    false
+    = form_for @news_item,
+               url: representative_search_my_news_item_path(@representative),
+               html: { method: :get } do |f|
+      .form-group
+        = f.label :representative_id, 'Representative'
+        = f.select :representative_id,
+                   @representatives_list,
+                   { selected: @representative.id },
+                   class: 'form-control'
+
+      .form-group
+        = f.label :issue, 'Issue'
+        = f.select :issue,
+                   NewsItem.issues,
+                   { include_blank: true },
+                   class: 'form-control'
+
+      .actions
+        = f.submit 'Search', class: 'btn btn-primary'
+
   .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
     .clearfix.mt-3
       .float-right
-        = link_to representative_news_items_path(@representative), class: 'btn btn-info' do
+        = link_to representative_news_items_path(@representative),
+                  class: 'btn btn-info' do
           View news articles
           %i.fas.fa-arrow-right
