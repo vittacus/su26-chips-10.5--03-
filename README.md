@@ -53,3 +53,11 @@ git clone git@github.com:saasbook/hw-agile-iterations.git
 If you're working in an environment like Codio, simply follow the embedded instructions.
 
 Otherwise, checkout [`docs/README.md`](./docs/README.md) for instructions.
+
+## Known Test Coverage Gaps (Iteration 2)
+
+- `SessionsController` (31.71% coverage): the OmniAuth callback flow is difficult
+  to test without deeper request mocking of the `omniauth.auth` hash. Flagged as
+  tech debt for a future iteration.
+- `MyNewsItemsController` create/update/destroy/save_article actions: partially
+  covered via feature specs, but lack direct request-spec coverage.
