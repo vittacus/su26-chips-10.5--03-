@@ -145,3 +145,6 @@ RSpec/DescribeClass:
 # Ideally, you'd want no more than 2.
 RSpec/MultipleExpectations:
   Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 8

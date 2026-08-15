@@ -94,7 +94,7 @@ RSpec.describe Rating do
 
     it 'averages multiple ratings from different users' do
       build_rating(user: user, value: 4).save!
-      Rating.create!(value: 2, news_item: news_item, user: other_user)
+      described_class.create!(value: 2, news_item: news_item, user: other_user)
 
       expect(news_item.reload.average_rating.to_f).to eq(3.0)
     end
@@ -111,7 +111,7 @@ RSpec.describe Rating do
     it 'recalculates the average after a rating is destroyed' do
       rating = build_rating(user: user, value: 4)
       rating.save!
-      other_rating = Rating.create!(value: 2, news_item: news_item, user: other_user)
+      other_rating = described_class.create!(value: 2, news_item: news_item, user: other_user)
 
       other_rating.destroy
 

@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def login_enabled?(provider)
     return true if Rails.env.development?
-  
+
     client_id = "#{provider.upcase}_CLIENT_ID"
     secret = "#{provider.upcase}_CLIENT_SECRET"
     ENV.fetch(client_id, Rails.application.credentials[client_id.to_sym]).present? &&

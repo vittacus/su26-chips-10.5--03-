@@ -16,7 +16,8 @@ RSpec.describe 'Ratings' do
   end
 
   let!(:user) do
-    User.create!(email: 'rater@example.com', first_name: 'Rae', last_name: 'Ter', provider: :developer, uid: 'rater-uid')
+    User.create!(email: 'rater@example.com', first_name: 'Rae', last_name: 'Ter', provider: :developer,
+                 uid: 'rater-uid')
   end
 
   describe 'POST /representatives/:representative_id/news_items/:news_item_id/ratings' do
@@ -36,7 +37,9 @@ RSpec.describe 'Ratings' do
 
     context 'when logged in' do
       before do
+        # rubocop:disable RSpec/AnyInstance
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+        # rubocop:enable RSpec/AnyInstance
       end
 
       it 'creates a rating for the news item' do

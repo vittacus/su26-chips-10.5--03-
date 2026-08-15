@@ -37,8 +37,8 @@
     - if current_user
       = form_with url: representative_news_item_ratings_path(@representative, @news_item), method: :post, local: true do
         .form-group
-          %label{ for: 'rating_value' } Rate this article
-          %select#rating_value.form-control{ name: 'rating[value]' }
+          %label{ for: 'rating-value' } Rate this article
+          %select.form-control#rating-value{ name: 'rating[value]' }
             - (1..5).each do |n|
               %option{ value: n, selected: (@current_user_rating&.value == n) }= n
         = submit_tag(@current_user_rating ? 'Update Rating' : 'Submit Rating', class: 'btn btn-success mt-2')
