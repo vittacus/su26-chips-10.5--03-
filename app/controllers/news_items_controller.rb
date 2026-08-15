@@ -9,7 +9,9 @@ class NewsItemsController < ApplicationController
     @curr_user_id = current_user&.id
   end
 
-  def show; end
+  def show
+    @current_user_rating = @news_item.ratings.find_by(user: current_user) if current_user
+  end
 
   private
 

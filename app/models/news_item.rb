@@ -5,6 +5,7 @@
 # Table name: news_items
 #
 #  id                :integer          not null, primary key
+#  average_rating    :decimal(3, 2)    default(0.0), not null
 #  description       :text
 #  issue             :string
 #  link              :string           not null
@@ -20,6 +21,13 @@
 class NewsItem < ApplicationRecord
   # TODO: this belongs to a user (creator_id)
   belongs_to :representative
+  has_many :ratings, dependent: :destroy
+
+  def recalculate_average_rating!
+    avg = ratings.average(:value)
+    update!(average_rating: avg.nil? ? 0.0 : avg.round(2))
+  end
+
   def self.issues
     [
       'Free Speech',

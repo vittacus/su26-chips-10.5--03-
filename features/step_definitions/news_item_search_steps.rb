@@ -19,7 +19,7 @@ end
 Given('I am logged in as a developer user') do
   visit login_path
 
-  click_link 'Developer Login'
+  click_button 'Developer Login'
 
   fill_in 'Provider', with: 'developer'
   fill_in 'First name', with: 'Cucumber'

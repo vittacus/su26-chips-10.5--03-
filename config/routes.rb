@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   # Routes for Representatives
   resources :representatives, only: [:index]
   resources :representatives do
-    resources :news_items, only: %i[index show]
+    resources :news_items, only: %i[index show] do
+      resources :ratings, only: %i[create]
+    end
   end
 
   get '/representatives/:representative_id/my_news_item/new' => 'my_news_items#new',

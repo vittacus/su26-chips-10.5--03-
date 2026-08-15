@@ -45,6 +45,21 @@ Scenario: The Events Page
     Then the page should be axe clean
 
 ## CS169: Add the third page here.
+@a11y @news_item_search
+Scenario: The New News Article Search Page
+    Given a representative named "Salud Carbajal" exists
+    When I visit the new news article page for "Salud Carbajal"
+    Then the page should be axe clean
+
+## CS169: Add the fourth page here.
+@a11y
+Scenario: A News Article Page
+    Given a representative named "Salud Carbajal" exists
+    And a news article about "Immigration Reform Bill" exists for "Salud Carbajal"
+    When I visit the news article page
+    Then the page should be axe clean
+    
+## CS169: Add the third page here.
 # @a11y
 # Scenario: ...
 

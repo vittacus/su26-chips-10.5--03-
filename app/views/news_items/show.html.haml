@@ -5,25 +5,47 @@
       .card-text
         %dl.row
           %dt.col-sm-3.text-md-right Link:
-          %dt.col-sm-9
-            %a{ href: @news_item.link }
+          %dd.col-sm-9
+            %a.text-dark{ href: @news_item.link }
               = @news_item.link
         %dl.row
           %dt.col-sm-3.text-md-right Description:
-          %dt.col-sm-9
+          %dd.col-sm-9
             = @news_item.description
         %dl.row
           %dt.col-sm-3.text-md-right Representative:
-          %dt.col-sm-9
-            = link_to @news_item.representative.name, representative_path(@news_item.representative)
+          %dd.col-sm-9
+            = link_to @news_item.representative.name, representative_path(@news_item.representative), class: 'text-dark'
         %dl.row
           %dt.col-sm-3.text-md-right Time Added:
-          %dt.col-sm-9
+          %dd.col-sm-9
             %time.timeago{ datetime: @news_item.created_at.iso8601 }
         %dl.row
           %dt.col-sm-3.text-md-right Last Updated:
-          %dt.col-sm-9
+          %dd.col-sm-9
             %time.timeago{ datetime: @news_item.updated_at.iso8601 }
+        %dl.row
+          %dt.col-sm-3.text-md-right Average Rating:
+          %dd.col-sm-9#average-rating
+            - if @news_item.ratings.any?
+              = number_with_precision(@news_item.average_rating, precision: 2)
+              out of 5
+              (#{@news_item.ratings.count} #{'rating'.pluralize(@news_item.ratings.count)})
+            - else
+              No ratings yet
+  .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4.mt-3
+    - if current_user
+      = form_with url: representative_news_item_ratings_path(@representative, @news_item), method: :post, local: true do
+        .form-group
+          %label{ for: 'rating_value' } Rate this article
+          %select#rating_value.form-control{ name: 'rating[value]' }
+            - (1..5).each do |n|
+              %option{ value: n, selected: (@current_user_rating&.value == n) }= n
+        = submit_tag(@current_user_rating ? 'Update Rating' : 'Submit Rating', class: 'btn btn-success mt-2')
+    - else
+      %p
+        = link_to 'Log in', login_path, class: 'text-dark'
+        to rate this article.
   .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
     .clearfix
       .float-right

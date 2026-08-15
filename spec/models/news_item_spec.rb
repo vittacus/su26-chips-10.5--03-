@@ -5,6 +5,7 @@
 # Table name: news_items
 #
 #  id                :integer          not null, primary key
+#  average_rating    :decimal(3, 2)    default(0.0), not null
 #  description       :text
 #  issue             :string
 #  link              :string           not null
